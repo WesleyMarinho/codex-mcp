@@ -1,0 +1,33 @@
+{
+  "testName": "Example Prompt Refinement Test",
+  "description": "Teste básico da funcionalidade de refinamento de prompt",
+  "input": {
+    "prompt": "Quero um script que leia CSV e grave no Postgres com validação",
+    "context": "Sistema de ETL para dados financeiros críticos",
+    "tags": ["etl", "postgres", "validação"]
+  },
+  "expectedOutputStructure": {
+    "success": "boolean",
+    "original_prompt": "string",
+    "improved_prompt": "string (deve ser mais detalhado)",
+    "rationale": "string",
+    "risks": ["array of strings"],
+    "tags": ["array of strings"],
+    "metadata": {
+      "sections": ["array of strings"],
+      "acceptance_criteria": ["array of strings"],
+      "checklist": ["array of strings"],
+      "processing_info": {
+        "codex_available": "boolean",
+        "timestamp": "ISO string",
+        "version": "string"
+      }
+    }
+  },
+  "notes": [
+    "Este teste pode ser usado para validar a funcionalidade básica",
+    "O prompt melhorado deve incluir mais detalhes técnicos",
+    "Riscos devem incluir validação de dados e performance",
+    "Tags devem incluir sugestões automáticas baseadas no conteúdo"
+  ]
+}

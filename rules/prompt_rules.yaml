@@ -1,0 +1,75 @@
+# Prompt Engineering Rules and Templates
+# This file defines the system prompts and rules for the MCP server
+
+system_prompts:
+  main_refiner: |
+    You are an expert prompt engineer specialized in refining prompts for maximum effectiveness.
+    
+    SYSTEM RULES:
+    - All code comments and technical content must be in English
+    - All user-facing responses must be in Portuguese (pt-BR)
+    - Never expose or mention environment variable names like GEMINI_API_KEY
+    - If information is missing, list assumptions and validation methods
+    
+    Your task is to analyze the input prompt and improve it following these guidelines:
+    1. Make it more specific and actionable
+    2. Add context and constraints where helpful
+    3. Structure the request for clearer outcomes
+    4. Identify potential risks or edge cases
+    5. Suggest validation methods
+    
+    REQUIRED OUTPUT FORMAT (JSON):
+    {
+      "improvedPrompt": "Enhanced version of the original prompt",
+      "rationale": "Explanation of changes made and why",
+      "risks": ["Array of potential risks or issues"],
+      "tags": ["Array of relevant tags"],
+      "metadata": {
+        "sections": ["Plan", "Risks", "Next actions", "Tests"],
+        "acceptanceCriteria": ["Specific measurable outcomes"],
+        "checklist": ["Actionable verification steps"]
+      }
+    }
+
+templates:
+  software_development:
+    prompt_prefix: "Como um desenvolvedor sênior experiente, "
+    sections:
+      - "Análise de Requisitos"
+      - "Arquitetura Proposta"
+      - "Implementação"
+      - "Testes"
+      - "Documentação"
+    
+  data_processing:
+    prompt_prefix: "Para processamento de dados, considere: "
+    sections:
+      - "Fonte de Dados"
+      - "Transformação"
+      - "Validação"
+      - "Destino"
+      - "Monitoramento"
+
+risk_categories:
+  - "Segurança"
+  - "Performance" 
+  - "Escalabilidade"
+  - "Manutenibilidade"
+  - "Compatibilidade"
+  - "Dados Sensíveis"
+  - "Dependências Externas"
+  - "Recursos Computacionais"
+
+common_tags:
+  - "desenvolvimento"
+  - "automação"
+  - "dados"
+  - "api"
+  - "segurança"
+  - "performance"
+  - "testes"
+  - "documentação"
+  - "devops"
+  - "frontend"
+  - "backend"
+  - "database"

@@ -1,0 +1,54 @@
+# MCP Configuration Examples for Different IDEs
+# Copy the relevant section to your IDE's configuration file
+
+# VSCode Configuration
+# File: .vscode/settings.json
+[vscode]
+{
+  "mcp.servers": {
+    "prompt-engineer-mcp": {
+      "command": "node",
+      "args": ["/absolute/path/to/prompt-engineer-mcp/dist/server.js"],
+      "description": "Prompt Engineering Layer with GPT-5 integration"
+    }
+  }
+}
+
+# Trae Configuration  
+# File: ~/.mcp/config.toml
+[trae.prompt-engineer-mcp]
+command = "prompt-engineer-mcp"
+args = []
+description = "Prompt Engineering Layer with GPT-5 integration"
+env = {}
+
+# Claude Desktop Configuration
+# File: ~/.mcp/config.toml
+[claude-desktop.prompt-engineer-mcp]
+command = "prompt-engineer-mcp" 
+args = []
+description = "Prompt Engineering Layer with GPT-5 integration"
+timeout = 30
+
+# Cursor Configuration
+# File: ~/.cursor/mcp.json or cursor.json in project root
+{
+  "plugins": {
+    "prompt-engineer-mcp": {
+      "command": "prompt-engineer-mcp",
+      "description": "Prompt Engineering Layer with GPT-5 integration",
+      "enabled": true
+    }
+  }
+}
+
+# Alternative global configuration
+# File: ~/.mcp/servers.json
+{
+  "servers": {
+    "prompt-engineer-mcp": {
+      "command": "prompt-engineer-mcp",
+      "description": "Prompt Engineering Layer with GPT-5 integration"
+    }
+  }
+}
