@@ -133,8 +133,10 @@ class TemplateManager {
     const suggestedTags: string[] = [];
     
     for (const tag of this.rules.common_tags) {
-      if (lowerPrompt.includes(tag.toLowerCase()) || 
-          lowerPrompt.includes(tag.toLowerCase().replace('ã', 'a'))) {
+      const tagLower = tag.toLowerCase();
+      if (lowerPrompt.includes(tagLower) || 
+          lowerPrompt.includes(tagLower.replace('ã', 'a')) ||
+          lowerPrompt.includes(tagLower.replace('ç', 'c'))) {
         suggestedTags.push(tag);
       }
     }
@@ -149,6 +151,15 @@ class TemplateManager {
     if (lowerPrompt.includes('performance') || lowerPrompt.includes('otimiz') || lowerPrompt.includes('speed')) {
       suggestedTags.push('performance');
     }
+    if (lowerPrompt.includes('script') || lowerPrompt.includes('automat')) {
+      suggestedTags.push('automação');
+    }
+    if (lowerPrompt.includes('csv') || lowerPrompt.includes('postgres') || lowerPrompt.includes('database')) {
+      suggestedTags.push('dados');
+    }
+    if (lowerPrompt.includes('desenvolv') || lowerPrompt.includes('criar') || lowerPrompt.includes('implement')) {
+      suggestedTags.push('desenvolvimento');
+    }
     
     return [...new Set(suggestedTags)]; // Remove duplicates
   }
@@ -162,29 +173,45 @@ class TemplateManager {
     
     // Security risks
     if (lowerPrompt.includes('password') || lowerPrompt.includes('secret') || 
-        lowerPrompt.includes('token') || lowerPrompt.includes('auth')) {
+        lowerPrompt.includes('token') || lowerPrompt.includes('auth') || 
+        lowerPrompt.includes('login') || lowerPrompt.includes('senha')) {
       risks.push('Dados sensíveis podem estar expostos');
     }
     
     // Performance risks
     if (lowerPrompt.includes('loop') || lowerPrompt.includes('recursão') || 
-        lowerPrompt.includes('grande volume')) {
+        lowerPrompt.includes('grande volume') || lowerPrompt.includes('many') ||
+        lowerPrompt.includes('milhões') || lowerPrompt.includes('lote')) {
       risks.push('Possível impacto na performance com grandes volumes');
     }
     
     // Data risks
     if (lowerPrompt.includes('database') || lowerPrompt.includes('sql') || 
-        lowerPrompt.includes('dados')) {
+        lowerPrompt.includes('dados') || lowerPrompt.includes('csv') ||
+        lowerPrompt.includes('postgres') || lowerPrompt.includes('validação')) {
       risks.push('Validação de dados de entrada necessária');
     }
     
     // External dependency risks
     if (lowerPrompt.includes('api') || lowerPrompt.includes('external') || 
-        lowerPrompt.includes('terceiro')) {
+        lowerPrompt.includes('terceiro') || lowerPrompt.includes('http') ||
+        lowerPrompt.includes('rest') || lowerPrompt.includes('endpoint')) {
       risks.push('Dependência de serviços externos pode falhar');
     }
     
-    return risks;
+    // File system risks
+    if (lowerPrompt.includes('arquivo') || lowerPrompt.includes('file') ||
+        lowerPrompt.includes('salvar') || lowerPrompt.includes('gravar')) {
+      risks.push('Verificar permissões de acesso a arquivos');
+    }
+    
+    // Backup and recovery risks
+    if (lowerPrompt.includes('backup') || lowerPrompt.includes('recovery') ||
+        lowerPrompt.includes('restore') || lowerPrompt.includes('recuper')) {
+      risks.push('Implementar estratégia de recuperação em caso de falha');
+    }
+    
+    return risks.length > 0 ? risks : ['Verificar implementação cuidadosamente'];
   }
 
   /**
