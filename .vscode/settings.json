@@ -1,0 +1,1 @@
+{"editor.formatOnSave": true,"editor.defaultFormatter": "esbenp.prettier-vscode","files.associations": {"*.yaml": "yaml"},"[typescript]": {"editor.defaultFormatter": "esbenp.prettier-vscode"},"hypotheticalMcpExtension.servers": [{"name": "prompt-engineer-mcp","command": "tsx","args": ["${workspaceFolder}/src/server.ts"],"enabled": true,"env": {"USE_MOCK_CODEX": "true"}}]}
